@@ -10,8 +10,8 @@ size = Vector2(90, 20)
 size = Vector2(100, 20)
 
 [node name="Player" type="RigidBody2D"]
-mass = 1.06
-linear_damp = 1.0
+mass = 2.0
+angular_damp = 2.5
 script = ExtResource("1_1sgmg")
 
 [node name="RedPart" type="CollisionShape2D" parent="."]

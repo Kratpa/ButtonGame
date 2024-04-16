@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,10 +9,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
 
 
-
-func _on_body_entered(body):
+func _on_body_entered(body: RigidBody2D):
 	body.linear_velocity = Vector2(body.linear_velocity.x, 0)
-	body.apply_central_impulse(Vector2(0, -1000))
+	body.apply_central_impulse(Vector2(0, -1000 * body.mass))

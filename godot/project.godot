@@ -14,3 +14,7 @@ config/name="Button Game"
 run/main_scene="res://scenes/game/Game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/resizable=false

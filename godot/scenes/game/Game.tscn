@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
-[ext_resource type="PackedScene" uid="uid://c65bvqy6mdh57" path="res://scenes/floor/Floor.tscn" id="2_idac8"]
+[ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
 
-[node name="Floor" parent="." instance=ExtResource("2_idac8")]
+[node name="Floor2" parent="." instance=ExtResource("2_hwmhc")]
+position = Vector2(577, 663)
 
 [node name="Player" parent="." instance=ExtResource("2_dwpk8")]
 position = Vector2(171, 170)
