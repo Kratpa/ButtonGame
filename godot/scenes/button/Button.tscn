@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc004xcbgc2ob"]
+
+[ext_resource type="Script" path="res://scenes/button/Button.gd" id="1_4btul"]
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_4btul")
+
+[node name="PushPart" type="Polygon2D" parent="."]
+position = Vector2(-45, -20)
+color = Color(0.901961, 0.00392157, 0, 1)
+polygon = PackedVector2Array(0, 0, 90, 0, 90, 20, 0, 20)
+
+[node name="Frame" type="Polygon2D" parent="."]
+position = Vector2(-50, 0)
+color = Color(0.776471, 0.776471, 0.776471, 1)
+polygon = PackedVector2Array(0, 0, 100, 0, 100, 20, 0, 20)

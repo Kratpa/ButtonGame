@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c65bvqy6mdh57"]
+
+[ext_resource type="Script" path="res://scenes/floor/Floor.gd" id="1_plbjq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hr1x"]
+size = Vector2(1160, 1)
+
+[node name="Floor" type="Area2D"]
+position = Vector2(574, 648)
+script = ExtResource("1_plbjq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_8hr1x")
+debug_color = Color(0.701961, 0.313726, 0.937255, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

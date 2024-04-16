@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0phhgyg3mhwf"]
+
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_1sgmg"]
+[ext_resource type="PackedScene" uid="uid://bc004xcbgc2ob" path="res://scenes/button/Button.tscn" id="2_oxkvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcswh"]
+size = Vector2(90, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_devci"]
+size = Vector2(100, 20)
+
+[node name="Player" type="RigidBody2D"]
+mass = 1.06
+linear_damp = 1.0
+script = ExtResource("1_1sgmg")
+
+[node name="RedPart" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_xcswh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_devci")
+
+[node name="Button" parent="." instance=ExtResource("2_oxkvl")]

@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="Button Game"
-run/main_scene="res://scenes/Placeholder.tscn"
+run/main_scene="res://scenes/game/Game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
