@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=6 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
+[ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
@@ -13,8 +14,12 @@ position = Vector2(577, 663)
 
 [node name="Player" parent="." instance=ExtResource("2_dwpk8")]
 position = Vector2(171, 170)
+collision_layer = 3
+move_force = 2000
 
 [node name="ObjectSpawner" parent="." instance=ExtResource("4_irqdp")]
 position = Vector2(1066, 89)
-impulse = Vector2(-100, 10)
+impulse = Vector2(-100, 0)
 spawn_interval = 2.5
+
+[node name="PickupSpawner" parent="." instance=ExtResource("5_h7ldk")]

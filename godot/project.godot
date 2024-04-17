@@ -18,3 +18,7 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/resizable=false
+
+[layer_names]
+
+2d_physics/layer_2="pickup"
