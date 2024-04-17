@@ -35,3 +35,4 @@ func _integrate_forces(state):
 		state.linear_velocity = Vector2()
 		state.angular_velocity = 0
 		reset = false
+

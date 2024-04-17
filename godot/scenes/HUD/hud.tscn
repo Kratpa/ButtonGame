@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4dflikepxhi4"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_6e5tc"]
+[ext_resource type="FontFile" uid="uid://cjnr63te1su44" path="res://fonts/Xolonium-Regular.ttf" id="2_0pwge"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_6e5tc")
+
+[node name="ScoreLabel" type="Label" parent="."]
+visible = false
+offset_left = 500.0
+offset_top = -1.0
+offset_right = 590.0
+offset_bottom = 77.0
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 64
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+offset_left = 195.0
+offset_top = 284.0
+offset_right = 942.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 64
+text = "DON'T GET PRESSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 473.0
+offset_top = 513.0
+offset_right = 640.0
+offset_bottom = 594.0
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 60
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

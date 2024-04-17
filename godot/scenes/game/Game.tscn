@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=7 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
+[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
@@ -23,3 +24,11 @@ impulse = Vector2(-100, 0)
 spawn_interval = 2.5
 
 [node name="PickupSpawner" parent="." instance=ExtResource("5_h7ldk")]
+
+[node name="HUD" parent="." instance=ExtResource("6_ch5am")]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
