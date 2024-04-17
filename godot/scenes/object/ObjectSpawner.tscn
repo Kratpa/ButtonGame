@@ -6,8 +6,6 @@
 script = ExtResource("1_3lm0t")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-autostart = true
 
 [node name="Objects" type="Node2D" parent="."]
 

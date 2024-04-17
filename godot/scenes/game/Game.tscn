@@ -16,3 +16,5 @@ position = Vector2(171, 170)
 
 [node name="ObjectSpawner" parent="." instance=ExtResource("4_irqdp")]
 position = Vector2(1066, 89)
+impulse = Vector2(-100, 10)
+spawn_interval = 2.5
