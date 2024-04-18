@@ -9,14 +9,18 @@ var score
 func _process(delta):
 	pass
 
+
 func game_over():
 	$ScoreTimer.stop()
 	$HUD.show_game_over()
+	player.hide()
 
 func new_game():
 	score = 30
 	$ScoreTimer.start()
 	$HUD.update_score(score)
+	player.show()
+	player.reset = true
 	
 
 func _on_score_timer_timeout():
@@ -30,3 +34,7 @@ func _on_score_timer_timeout():
 		$HUD/StartButton.text = "Next"
 		$HUD/StartButton.show()
 	
+
+
+func _on_player_hit():
+	game_over()

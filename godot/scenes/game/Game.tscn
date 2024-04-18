@@ -29,6 +29,7 @@ spawn_interval = 2.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -1,6 +1,8 @@
 class_name Player
 extends RigidBody2D
 
+signal hit
+
 @export var move_force = 1000
 @export var spin_force = 50000
 @export var MAX_LINEAR_VELOCITY = 500
@@ -36,3 +38,9 @@ func _integrate_forces(state):
 		state.angular_velocity = 0
 		reset = false
 
+
+
+
+func _on_area_2d_body_entered(body):
+	emit_signal("hit")
+	print("hit")
