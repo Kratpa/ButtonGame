@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=8 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
-[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
+[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/HUD.tscn" id="6_ch5am"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
+b = Vector2(10000, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
@@ -16,6 +19,7 @@ position = Vector2(577, 663)
 [node name="Player" parent="." instance=ExtResource("2_dwpk8")]
 position = Vector2(171, 170)
 collision_layer = 3
+freeze = true
 move_force = 2000
 
 [node name="ObjectSpawner" parent="." instance=ExtResource("4_irqdp")]
@@ -29,7 +33,19 @@ spawn_interval = 2.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
+[node name="WorldBoundary" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(-5000, 700)
+shape = SubResource("SegmentShape2D_dahug")
+
+[connection signal="game_start" from="." to="Player" method="_on_game_game_start"]
+[connection signal="game_start" from="." to="ObjectSpawner" method="_on_game_game_start"]
+[connection signal="game_start" from="." to="PickupSpawner" method="_on_game_game_start"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="hit" from="Player" to="ObjectSpawner" method="_on_player_hit"]
+[connection signal="hit" from="Player" to="PickupSpawner" method="_on_player_hit"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="body_entered" from="WorldBoundary" to="." method="_on_world_boundary_body_entered"]
