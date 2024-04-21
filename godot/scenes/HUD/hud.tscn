@@ -5,16 +5,23 @@
 
 [node name="HUD" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_6e5tc")
 
 [node name="ScoreLabel" type="Label" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 500.0
-offset_top = -1.0
-offset_right = 590.0
-offset_bottom = 77.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 78.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_0pwge")
 theme_override_font_sizes/font_size = 64
 text = "30"
@@ -22,11 +29,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Message" type="Label" parent="."]
-layout_mode = 0
-offset_left = 195.0
-offset_top = 284.0
-offset_right = 942.0
-offset_bottom = 362.0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -39.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_0pwge")
 theme_override_font_sizes/font_size = 64
 text = "DON'T GET PRESSED"
@@ -35,16 +46,31 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 513.0
-offset_right = 640.0
-offset_bottom = 594.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.5
+offset_top = -198.0
+offset_right = 83.5
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_0pwge")
 theme_override_font_sizes/font_size = 60
 text = "Start"
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="LevelLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 234.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 40
+text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

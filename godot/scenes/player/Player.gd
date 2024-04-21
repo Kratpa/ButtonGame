@@ -31,10 +31,11 @@ func on_hit():
 	emit_signal("hit")
 	linear_velocity = Vector2()
 	angular_velocity = 0
+	#Engine.time_scale = 0.05
 	set_deferred("freeze", true)
 
 func _on_area_2d_body_entered(body):
-	if body is Floor2 and rotation_degrees >= -90 and rotation_degrees <= 90:
+	if body is Floor2 and rotation_degrees >= -150 and rotation_degrees <= 150:
 		return
 	on_hit()
 
