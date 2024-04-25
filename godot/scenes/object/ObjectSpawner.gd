@@ -12,7 +12,7 @@ var object_scene = preload("res://scenes/object/Object.tscn")
 
 var elapsed = 0
 
-var freezed = false
+var freezed = true
 
 var objects_spawned = 0
 

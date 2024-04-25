@@ -44,14 +44,4 @@ shape = SubResource("RectangleShape2D_devci")
 
 [node name="Button" parent="." instance=ExtResource("2_oxkvl")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(25, 25)
-zoom = Vector2(1.03, 1.03)
-limit_left = -25
-limit_top = -25
-limit_right = 1175
-limit_bottom = 620
-limit_smoothed = true
-position_smoothing_speed = 100.0
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

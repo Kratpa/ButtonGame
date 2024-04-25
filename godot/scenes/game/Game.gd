@@ -10,11 +10,16 @@ signal level_up(level: int)
 @onready var floor = $Floor
 @onready var hud = $HUD
 @onready var object_spawner = $ObjectSpawner
+@onready var parallax = $ParallaxBackground
+@onready var viewport_width = get_viewport_rect().size.x
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var player_x = player.position.x
+	var viewport_center = viewport_width / 2
+	var offset = player_x - viewport_center
+	parallax.scroll_offset.x = -offset * 0.2
 
 
 func game_over():
