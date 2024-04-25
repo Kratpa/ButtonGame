@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=15 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
@@ -6,11 +6,40 @@
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
 [ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
-[ext_resource type="Texture2D" uid="uid://gmvsopgmjia2" path="res://scenes/background/MainBG.png" id="8_xkw35"]
-[ext_resource type="Texture2D" uid="uid://dd47oilke8gus" path="res://scenes/background/LampPostBG2.png" id="9_bc41r"]
+[ext_resource type="Texture2D" uid="uid://c2ydw1dkpom3c" path="res://scenes/background/MainBG_FireDust.png" id="7_xk0uf"]
+[ext_resource type="Texture2D" uid="uid://dovhm6h3fvp2g" path="res://scenes/background/LampPostBG_Pixel.png" id="8_j5cg5"]
+[ext_resource type="Shader" path="res://scenes/game/Distortion.gdshader" id="9_m2or1"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
 b = Vector2(10000, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tn7vb"]
+shader = ExtResource("9_m2or1")
+shader_parameter/ghost = 1.0
+shader_parameter/speed = 0.5
+shader_parameter/giggle = 0.5
+shader_parameter/amplitude = 0.004
+
+[sub_resource type="Environment" id="Environment_sxmem"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.3
+glow_bloom = 0.1
+glow_blend_mode = 0
+
+[sub_resource type="Gradient" id="Gradient_h0ble"]
+offsets = PackedFloat32Array(0.0649351, 0.896104)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.992157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5xef1"]
+gradient = SubResource("Gradient_h0ble")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.486239, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
@@ -46,23 +75,52 @@ shape = SubResource("SegmentShape2D_dahug")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Back" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -3
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Back"]
 z_index = -2
-position = Vector2(542, 338)
-texture = ExtResource("8_xkw35")
+position = Vector2(583, 216)
+scale = Vector2(0.905469, 0.940625)
+texture = ExtResource("7_xk0uf")
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 1
 position = Vector2(707, -8)
 motion_scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Front"]
-self_modulate = Color(0.976471, 0.952941, 0.823529, 1)
 z_index = -1
-position = Vector2(-127, 182.25)
-scale = Vector2(0.915625, 0.760547)
-texture = ExtResource("9_bc41r")
+position = Vector2(-100, 217.5)
+scale = Vector2(0.85625, 0.688281)
+texture = ExtResource("8_j5cg5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_tn7vb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_right = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sxmem")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(-3, 0)
+color = Color(0.921569, 0.223529, 0.0313726, 1)
+blend_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(103, 189)
+scale = Vector2(9.625, 8.5)
+color = Color(0.984314, 0.737255, 0.309804, 1)
+texture = SubResource("GradientTexture2D_5xef1")
 
 [connection signal="game_start" from="." to="Player" method="_on_game_game_start"]
 [connection signal="game_start" from="." to="ObjectSpawner" method="_on_game_game_start"]
@@ -70,7 +128,7 @@ texture = ExtResource("9_bc41r")
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="hit" from="Player" to="ObjectSpawner" method="_on_player_hit"]
 [connection signal="hit" from="Player" to="PickupSpawner" method="_on_player_hit"]
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="body_entered" from="WorldBoundary" to="." method="_on_world_boundary_body_entered"]
