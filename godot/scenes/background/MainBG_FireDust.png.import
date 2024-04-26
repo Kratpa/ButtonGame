@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gmvsopgmjia2"
-path="res://.godot/imported/MainBG.png-a35ec97df41be32d0ecbcfadf7652c42.ctex"
+uid="uid://c6higcd5m85ji"
+path="res://.godot/imported/MainBG_FireDust.png-f7b6f90d19f82765a30e0ce800865268.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/background/MainBG.png"
-dest_files=["res://.godot/imported/MainBG.png-a35ec97df41be32d0ecbcfadf7652c42.ctex"]
+source_file="res://scenes/background/MainBG_FireDust.png"
+dest_files=["res://.godot/imported/MainBG_FireDust.png-f7b6f90d19f82765a30e0ce800865268.ctex"]
 
 [params]
 

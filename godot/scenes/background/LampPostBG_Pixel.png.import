@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd47oilke8gus"
-path="res://.godot/imported/LampPostBG2.png-12155129a442b84c72689d861315d8cc.ctex"
+uid="uid://536tvr5imja7"
+path="res://.godot/imported/LampPostBG_Pixel.png-333cc54e15d8154eeb6aba91a53c2b4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/background/LampPostBG2.png"
-dest_files=["res://.godot/imported/LampPostBG2.png-12155129a442b84c72689d861315d8cc.ctex"]
+source_file="res://scenes/background/LampPostBG_Pixel.png"
+dest_files=["res://.godot/imported/LampPostBG_Pixel.png-333cc54e15d8154eeb6aba91a53c2b4d.ctex"]
 
 [params]
 

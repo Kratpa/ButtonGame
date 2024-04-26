@@ -1,19 +1,62 @@
-[gd_scene load_steps=13 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=19 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
-[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/HUD.tscn" id="6_ch5am"]
-[ext_resource type="Texture2D" uid="uid://gmvsopgmjia2" path="res://scenes/background/MainBG.png" id="8_xkw35"]
+[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
+[ext_resource type="Texture2D" uid="uid://c6higcd5m85ji" path="res://scenes/background/MainBG_FireDust.png" id="8_vboun"]
 [ext_resource type="PackedScene" uid="uid://6k0ffdcyqd4m" path="res://scenes/Audio/BounceAudio.tscn" id="9_7tkyq"]
-[ext_resource type="Texture2D" uid="uid://dd47oilke8gus" path="res://scenes/background/LampPostBG2.png" id="9_bc41r"]
+[ext_resource type="Texture2D" uid="uid://536tvr5imja7" path="res://scenes/background/LampPostBG_Pixel.png" id="9_joohe"]
 [ext_resource type="PackedScene" uid="uid://cmxehl2o64xkd" path="res://scenes/Audio/BGMusic.tscn" id="10_emvsy"]
 [ext_resource type="PackedScene" uid="uid://bf27suugembyv" path="res://scenes/Audio/Startsong.tscn" id="11_f4h7r"]
+[ext_resource type="Shader" path="res://scenes/Shader/Ghost.gdshader" id="12_m6e5l"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
 b = Vector2(10000, 0)
+
+[sub_resource type="Environment" id="Environment_jsfpk"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.25
+glow_bloom = 0.1
+glow_blend_mode = 0
+
+[sub_resource type="Gradient" id="Gradient_neksa"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_shqfn"]
+gradient = SubResource("Gradient_neksa")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.009)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mf5xr"]
+shader = ExtResource("12_m6e5l")
+shader_parameter/ghost = 1.0
+shader_parameter/speed = 0.4
+shader_parameter/giggle = 0.4
+shader_parameter/amplitude = 0.004
+
+[sub_resource type="GDScript" id="GDScript_g616u"]
+script/source = "extends ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_816xq")
@@ -58,9 +101,9 @@ motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Back"]
 z_index = -2
-position = Vector2(577, 241)
-scale = Vector2(0.975098, 0.710059)
-texture = ExtResource("8_xkw35")
+position = Vector2(576.5, 203.219)
+scale = Vector2(0.997656, 0.769092)
+texture = ExtResource("8_vboun")
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(707, -8)
@@ -69,9 +112,9 @@ motion_scale = Vector2(0.8, 0.8)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Front"]
 self_modulate = Color(0.976471, 0.952941, 0.823529, 1)
 z_index = -1
-position = Vector2(-128, 219)
-scale = Vector2(1.11543, 0.693652)
-texture = ExtResource("9_bc41r")
+position = Vector2(-128.5, 213.469)
+scale = Vector2(1.01016, 0.702295)
+texture = ExtResource("9_joohe")
 
 [node name="BGMusic" parent="." instance=ExtResource("10_emvsy")]
 autoplay = false
@@ -79,13 +122,39 @@ autoplay = false
 [node name="Startsong" parent="." instance=ExtResource("11_f4h7r")]
 volume_db = -11.775
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jsfpk")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(1, 0.572549, 0.117647, 1)
+blend_mode = 2
+shadow_color = Color(0.619608, 0, 0, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-182.688, 119.094)
+scale = Vector2(8.13818, 4.95239)
+color = Color(0.815686, 0.172549, 0.0235294, 1)
+texture = SubResource("GradientTexture2D_shqfn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_mf5xr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+mouse_filter = 2
+script = SubResource("GDScript_g616u")
+
 [connection signal="game_start" from="." to="Player" method="_on_game_game_start"]
 [connection signal="game_start" from="." to="ObjectSpawner" method="_on_game_game_start"]
 [connection signal="game_start" from="." to="PickupSpawner" method="_on_game_game_start"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="hit" from="Player" to="ObjectSpawner" method="_on_player_hit"]
 [connection signal="hit" from="Player" to="PickupSpawner" method="_on_player_hit"]
-[connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="body_entered" from="WorldBoundary" to="." method="_on_world_boundary_body_entered"]

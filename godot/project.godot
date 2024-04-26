@@ -26,3 +26,7 @@ window/size/resizable=false
 [physics]
 
 common/physics_ticks_per_second=120
+
+[rendering]
+
+viewport/hdr_2d=true
