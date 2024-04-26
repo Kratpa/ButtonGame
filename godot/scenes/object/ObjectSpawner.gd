@@ -19,6 +19,7 @@ var objects_spawned = 0
 func _physics_process(delta):
 	
 	for node: Node2D in objects.get_children():
+		node.angular_velocity = clamp(node.angular_velocity, -10, 10)
 		if node.position.y > 1500:
 			node.queue_free()
 	if !freezed:
@@ -34,6 +35,7 @@ func spawn():
 	if objects_spawned % 2 != 0:
 		y_implulse += -100
 	object.apply_central_impulse(Vector2(impulse.x, y_implulse))
+	object.angular_velocity = -5
 	objects_spawned += 1
 	
 func level_up(level: int):
