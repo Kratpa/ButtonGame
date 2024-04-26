@@ -12,8 +12,15 @@ signal level_up(level: int)
 @onready var object_spawner = $ObjectSpawner
 @onready var parallax = $ParallaxBackground
 @onready var viewport_width = get_viewport_rect().size.x
+@onready var bgmusic = $BGMusic
+@onready var startmusic = $Startsong
 
-
+func randomsong():
+	var songnr = randi_range(0, 1)
+	if songnr == 0:
+		startmusic.play()
+	else:
+		bgmusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,6 +33,9 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$HUD.show_game_over()
+	bgmusic.stop()
+	startmusic.stop()
+	
 
 func new_game():
 	time_alive = 0
@@ -34,6 +44,7 @@ func new_game():
 	$ScoreTimer.start()
 	hud.update_level(level)
 	hud.update_score(time_alive)
+	randomsong()
 	
 
 func _on_score_timer_timeout():

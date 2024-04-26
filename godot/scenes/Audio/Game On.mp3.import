@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqlqxm18vxvyd"
+path="res://.godot/imported/Game On.mp3-6ad32e73e161c81811ede33e94c94bd9.mp3str"
+
+[deps]
+
+source_file="res://scenes/Audio/Game On.mp3"
+dest_files=["res://.godot/imported/Game On.mp3-6ad32e73e161c81811ede33e94c94bd9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

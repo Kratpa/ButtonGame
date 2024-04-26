@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=13 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://gmvsopgmjia2" path="res://scenes/background/MainBG.png" id="8_xkw35"]
 [ext_resource type="PackedScene" uid="uid://6k0ffdcyqd4m" path="res://scenes/Audio/BounceAudio.tscn" id="9_7tkyq"]
 [ext_resource type="Texture2D" uid="uid://dd47oilke8gus" path="res://scenes/background/LampPostBG2.png" id="9_bc41r"]
+[ext_resource type="PackedScene" uid="uid://cmxehl2o64xkd" path="res://scenes/Audio/BGMusic.tscn" id="10_emvsy"]
+[ext_resource type="PackedScene" uid="uid://bf27suugembyv" path="res://scenes/Audio/Startsong.tscn" id="11_f4h7r"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
 b = Vector2(10000, 0)
@@ -70,6 +72,12 @@ z_index = -1
 position = Vector2(-128, 219)
 scale = Vector2(1.11543, 0.693652)
 texture = ExtResource("9_bc41r")
+
+[node name="BGMusic" parent="." instance=ExtResource("10_emvsy")]
+autoplay = false
+
+[node name="Startsong" parent="." instance=ExtResource("11_f4h7r")]
+volume_db = -11.775
 
 [connection signal="game_start" from="." to="Player" method="_on_game_game_start"]
 [connection signal="game_start" from="." to="ObjectSpawner" method="_on_game_game_start"]

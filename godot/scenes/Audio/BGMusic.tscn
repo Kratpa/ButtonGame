@@ -2,6 +2,6 @@
 
 [ext_resource type="AudioStream" uid="uid://b32dvxd7qrnn4" path="res://scenes/Audio/Pixel Adventure.mp3" id="1_5ehpn"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+[node name="BGMusic" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_5ehpn")
 autoplay = true
