@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6k0ffdcyqd4m"]
+
+[ext_resource type="AudioStream" uid="uid://ctevxf5arq5y5" path="res://scenes/Audio/boing-2-44164.mp3" id="1_x53b7"]
+
+[node name="BounceAudio" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_x53b7")
+volume_db = -14.054
+pitch_scale = 1.75

@@ -14,6 +14,7 @@ signal level_up(level: int)
 @onready var viewport_width = get_viewport_rect().size.x
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var player_x = player.position.x

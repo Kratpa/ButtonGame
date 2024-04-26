@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu4cxenac1n06"]
+
+[ext_resource type="AudioStream" uid="uid://blclubiphm42e" path="res://scenes/Audio/8-bit-powerup-6768.mp3" id="1_d2afa"]
+
+[node name="Pickupaudio" type="AudioStreamPlayer"]
+stream = ExtResource("1_d2afa")
+volume_db = -36.61
+pitch_scale = 1.97

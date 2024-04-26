@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=11 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
-[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/HUD.tscn" id="6_ch5am"]
+[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
 [ext_resource type="Texture2D" uid="uid://gmvsopgmjia2" path="res://scenes/background/MainBG.png" id="8_xkw35"]
+[ext_resource type="PackedScene" uid="uid://6k0ffdcyqd4m" path="res://scenes/Audio/BounceAudio.tscn" id="9_7tkyq"]
 [ext_resource type="Texture2D" uid="uid://dd47oilke8gus" path="res://scenes/background/LampPostBG2.png" id="9_bc41r"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
@@ -17,6 +18,11 @@ script = ExtResource("1_816xq")
 
 [node name="Floor2" parent="." instance=ExtResource("2_hwmhc")]
 position = Vector2(577, 663)
+
+[node name="BounceAudio" parent="Floor2" instance=ExtResource("9_7tkyq")]
+position = Vector2(-577, -663)
+volume_db = -7.495
+pitch_scale = 0.88
 
 [node name="Player" parent="." instance=ExtResource("2_dwpk8")]
 position = Vector2(576, 184)

@@ -1,6 +1,8 @@
 class_name Floor2
 extends RigidBody2D
 
+
+@onready var bouncesound = $BounceAudio
 var last_hit = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +17,7 @@ func _process(delta):
 
 func _on_body_entered(body: RigidBody2D):
 	if body is Player:
+		bouncesound.play()
 		var current_time = Time.get_ticks_msec()
 		if current_time - last_hit <= 100:
 			return
