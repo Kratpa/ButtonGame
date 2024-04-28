@@ -131,13 +131,13 @@ blend_mode = 2
 shadow_color = Color(0.619608, 0, 0, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-182.688, 119.094)
+position = Vector2(-13, 189)
 scale = Vector2(8.13818, 4.95239)
-color = Color(0.815686, 0.172549, 0.0235294, 1)
+color = Color(1, 0.701961, 0.235294, 1)
 texture = SubResource("GradientTexture2D_shqfn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mf5xr")
@@ -154,7 +154,7 @@ script = SubResource("GDScript_g616u")
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="hit" from="Player" to="ObjectSpawner" method="_on_player_hit"]
 [connection signal="hit" from="Player" to="PickupSpawner" method="_on_player_hit"]
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="body_entered" from="WorldBoundary" to="." method="_on_world_boundary_body_entered"]

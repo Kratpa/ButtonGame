@@ -13,4 +13,4 @@ polygon = PackedVector2Array(8, 12, 18, 7, 73, 7, 82, 12, 90, 20, 0, 20)
 [node name="Frame" type="Polygon2D" parent="."]
 position = Vector2(-50, 0)
 color = Color(0.776471, 0.776471, 0.776471, 1)
-polygon = PackedVector2Array(0, 0, 100, 0, 100, 20, 0, 20)
+polygon = PackedVector2Array(0, 0, 100, 0, 100, 9.57434, 93, 15, 86, 20, 14, 20, 6, 15, 0, 11)
