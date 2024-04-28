@@ -40,8 +40,8 @@ fill_to = Vector2(0.5, 0.009)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mf5xr"]
 shader = ExtResource("12_m6e5l")
 shader_parameter/ghost = 1.0
-shader_parameter/speed = 0.4
-shader_parameter/giggle = 0.4
+shader_parameter/speed = 0.5
+shader_parameter/giggle = 0.5
 shader_parameter/amplitude = 0.004
 
 [sub_resource type="GDScript" id="GDScript_g616u"]
@@ -137,7 +137,6 @@ color = Color(1, 0.701961, 0.235294, 1)
 texture = SubResource("GradientTexture2D_shqfn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mf5xr")

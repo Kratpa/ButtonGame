@@ -1,14 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyjyc0avghx6i"]
+[gd_scene load_steps=7 format=3 uid="uid://cyjyc0avghx6i"]
 
-[ext_resource type="Texture2D" uid="uid://cgs7djsutpadv" path="res://scenes/object/Sprite-0001-removebg-preview.png" id="1_xx7i7"]
+[ext_resource type="Texture2D" uid="uid://bqwnugvblkeog" path="res://scenes/object/Hammer.png" id="1_j38dp"]
+[ext_resource type="Shader" path="res://scenes/object/Object.gdshader" id="1_nuwyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hytsd"]
+size = Vector2(14.5584, 27.7137)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_scyon"]
+seed = 13
+frequency = 0.0032
+fractal_lacunarity = 2.335
+fractal_gain = 0.57
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xhwpp"]
+width = 128
+height = 128
+invert = true
+seamless_blend_skirt = 0.406
+as_normal_map = true
+bump_strength = 4.7
+noise = SubResource("FastNoiseLite_scyon")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxk12"]
+shader = ExtResource("1_nuwyd")
+shader_parameter/radius = 0.437
+shader_parameter/effectControl = 0.708
+shader_parameter/burnSpeed = 0.289
+shader_parameter/shape = 0.944
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_xhwpp")
 
 [node name="Object" type="RigidBody2D"]
 max_contacts_reported = 1
 contact_monitor = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11.3762, -10.2272)
+rotation = 0.71733
 shape = SubResource("RectangleShape2D_hytsd")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -16,6 +43,14 @@ visible = false
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_cxk12")
+position = Vector2(0.170285, -0.519853)
+scale = Vector2(-1.03193, 1.08696)
+texture = ExtResource("1_j38dp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(9.53674e-07, -4.76837e-07)
-scale = Vector2(-0.766, 0.703)
-texture = ExtResource("1_xx7i7")
+scale = Vector2(-1, 1)
+texture = ExtResource("1_j38dp")
