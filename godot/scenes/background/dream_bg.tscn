@@ -1,10 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://gpotk1ts3v15"]
-
-[ext_resource type="Texture2D" uid="uid://gmvsopgmjia2" path="res://scenes/background/MainBG.png" id="1_qb7fy"]
+[gd_scene format=3 uid="uid://gpotk1ts3v15"]
 
 [node name="DreamBG" type="Node2D"]
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qb7fy")
 metadata/_edit_group_ = true

@@ -41,7 +41,7 @@ func spawn():
 func level_up(level: int):
 	if current_spawn_interval <= 0.5:
 		return
-	var delta = 0.5
+	var delta = 0.20
 	if current_spawn_interval <= 1.0:
 		delta = 0.1
 	current_spawn_interval -= delta
