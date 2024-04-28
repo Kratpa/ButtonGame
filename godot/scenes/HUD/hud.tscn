@@ -45,6 +45,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Message2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 380.0
+offset_bottom = 461.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 32
+text = "Use A and D buttons to rotate, left and right arrow to move.
+Use space when landing to bounce higher."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -70,6 +85,19 @@ offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("2_0pwge")
 theme_override_font_sizes/font_size = 40
 text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 27.0
+offset_top = 52.0
+offset_right = 261.0
+offset_bottom = 148.0
+theme_override_fonts/font = ExtResource("2_0pwge")
+theme_override_font_sizes/font_size = 40
+text = "Speed: +1"
 horizontal_alignment = 1
 vertical_alignment = 1
 

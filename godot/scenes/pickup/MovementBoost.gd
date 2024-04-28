@@ -3,15 +3,16 @@ extends Pickup
 @export var power = 2000
 @onready var anim = $AnimatedSprite2D
 @onready var audio = $Pickupaudio
+
 func _ready():
 	anim.play("default")
-
-func _draw():
-	draw_circle(Vector2(), 10, Color.AQUAMARINE)
 	
 	
 func apply_effect(player: Player):
 	audio.play()
 	player.move_force += power
+	hud.update_score(1)
+	hud.speed_upgrade(1)
 	await get_tree().create_timer(5.0).timeout
 	player.move_force -= power
+	hud.speed_upgrade(-1)

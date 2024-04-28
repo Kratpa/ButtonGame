@@ -1,6 +1,7 @@
 class_name Pickup
 extends Area2D
 
+var hud: HUD
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

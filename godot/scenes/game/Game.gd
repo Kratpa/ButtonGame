@@ -1,5 +1,5 @@
 extends Node2D
-var time_alive
+var score = 0
 var level = 1
 
 
@@ -31,26 +31,24 @@ func _process(delta):
 
 
 func game_over():
-	$ScoreTimer.stop()
 	$HUD.show_game_over()
 	bgmusic.stop()
 	startmusic.stop()
 	
 
 func new_game():
-	time_alive = 0
-	level = 0
+	score = 0
+	level = 1
 	game_start.emit()
-	$ScoreTimer.start()
 	hud.update_level(level)
-	hud.update_score(time_alive)
+	hud.reset_score()
 	randomsong()
 	
 
-func _on_score_timer_timeout():
-	time_alive += 1
-	hud.update_score(time_alive)
-	if time_alive > 0 and time_alive % 10 == 0:
+func _on_bounce():
+	score += 1
+	hud.update_score(1)
+	if score > 0 and score % 10 == 0:
 		level += 1
 		hud.update_level(level)
 		object_spawner.level_up(level)

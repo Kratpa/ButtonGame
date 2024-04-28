@@ -1,5 +1,5 @@
 extends Node
-
+@export var hud: HUD
 var movement_boost_scene = preload("res://scenes/pickup/MovementBoost.tscn")
 var timer: Timer
 var current_instance: Pickup
@@ -17,6 +17,7 @@ func _spawn():
 	var instance: Pickup = movement_boost_scene.instantiate()
 	instance.position = Vector2(50 + randi() % (get_viewport().size.x - 50), 200 + randi() % (get_viewport().size.y - 200))
 	current_instance = instance
+	instance.hud = hud
 	add_child(instance)
 
 
