@@ -10,6 +10,8 @@ signal hit
 
 var initial_pos: Vector2
 
+@onready var force_field: StaticBody2D = $ForceField
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initial_pos = Vector2(position.x, position.y)
