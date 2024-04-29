@@ -10,10 +10,13 @@ func add():
 	additions += 1
 	visible = true
 	process_mode = Node.PROCESS_MODE_INHERIT
-	
+
+func reset():
+	additions = 0
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
 	
 func remove():
 	additions -= 1
 	if additions <= 0:
-		visible = false
-		process_mode = Node.PROCESS_MODE_DISABLED
+		reset()

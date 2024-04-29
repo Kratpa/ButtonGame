@@ -48,4 +48,5 @@ func _on_game_game_start():
 	set_deferred("freeze", false)
 	rotation = 0
 	position = initial_pos
+	force_field.reset()
 	
