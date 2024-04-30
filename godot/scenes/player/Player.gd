@@ -8,14 +8,15 @@ signal hit
 @export var MAX_LINEAR_VELOCITY = 500
 @export var MAX_ANGULAR_VELOCITY = 500
 @export var ANGULAR_VELOCITY = 3.5 # Adjust to change how fast player rotates while moving
-@export var blast_force = 1000  # Adjust as needed for blast strength
-@export var blast_cooldown_duration = 10
-
-@onready var blast_timer = $BlastCooldownTimer
-@onready var cooldown_animation_player = $CooldownAnimationPlayer
+@export var blast_force = 1000  # Blast strength
+@export var blast_cooldown_duration = 15
 
 var initial_pos: Vector2
 var is_on_cooldown = false
+
+@onready var blast_timer = $BlastCooldownTimer
+@onready var cooldown_animation_player = $CooldownAnimationPlayer
+@onready var force_field: StaticBody2D = $ForceField
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,8 +45,14 @@ func on_hit():
 	linear_velocity = Vector2()
 	angular_velocity = 0
 	cooldown_animation_player.stop()
+	is_on_cooldown = false
 	#Engine.time_scale = 0.05
 	set_deferred("freeze", true)
+
+func _on_area_2d_body_entered(body):
+	if body is Floor2 and rotation_degrees >= -150 and rotation_degrees <= 150:
+		return
+	on_hit()
 	
 func emit_blast():
 	if is_on_cooldown:
@@ -68,16 +75,11 @@ func emit_blast():
 func _on_blast_cooldown_timeout():
 	is_on_cooldown = false
 
-func _on_area_2d_body_entered(body):
-	if body is Floor2 and rotation_degrees >= -150 and rotation_degrees <= 150:
-		return
-	on_hit()
-
-
 func _on_game_game_start():
 	linear_velocity = Vector2()
 	angular_velocity = 0
 	set_deferred("freeze", false)
 	rotation = 0
 	position = initial_pos
+	force_field.reset()
 	
