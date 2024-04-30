@@ -30,8 +30,6 @@ shader_parameter/shape = 0.944
 shader_parameter/textureNoise = SubResource("NoiseTexture2D_xhwpp")
 
 [node name="Object" type="RigidBody2D"]
-collision_layer = 129
-collision_mask = 129
 max_contacts_reported = 1
 contact_monitor = true
 
@@ -39,6 +37,10 @@ contact_monitor = true
 position = Vector2(-11.3762, -10.2272)
 rotation = 0.71733
 shape = SubResource("RectangleShape2D_hytsd")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

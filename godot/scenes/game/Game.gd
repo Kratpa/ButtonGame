@@ -14,6 +14,7 @@ signal level_up(level: int)
 @onready var viewport_width = get_viewport_rect().size.x
 @onready var bgmusic = $BGMusic
 @onready var startmusic = $Startsong
+@onready var cooldown_icon = $HUD/CooldownIcon
 
 func randomsong():
 	var songnr = randi_range(0, 1)
@@ -43,6 +44,8 @@ func new_game():
 	hud.update_level(level)
 	hud.reset_score()
 	randomsong()
+	cooldown_icon.visible = true
+	cooldown_icon.modulate.a = 1
 	
 
 func _on_bounce():

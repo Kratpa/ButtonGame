@@ -1,17 +1,42 @@
-[gd_scene load_steps=19 format=3 uid="uid://db6vw4whhspc6"]
+[gd_scene load_steps=23 format=3 uid="uid://db6vw4whhspc6"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_816xq"]
 [ext_resource type="PackedScene" uid="uid://b0phhgyg3mhwf" path="res://scenes/player/Player.tscn" id="2_dwpk8"]
 [ext_resource type="PackedScene" uid="uid://bu7hm0hblrlpn" path="res://scenes/floor/Floor2.tscn" id="2_hwmhc"]
 [ext_resource type="PackedScene" uid="uid://5p0c2cncvtai" path="res://scenes/object/ObjectSpawner.tscn" id="4_irqdp"]
 [ext_resource type="PackedScene" uid="uid://b3rhiv1pgyhmb" path="res://scenes/pickup/PickupSpawner.tscn" id="5_h7ldk"]
-[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/HUD.tscn" id="6_ch5am"]
+[ext_resource type="PackedScene" uid="uid://d4dflikepxhi4" path="res://scenes/HUD/hud.tscn" id="6_ch5am"]
+[ext_resource type="Texture2D" uid="uid://bdt1hddyw4pgc" path="res://Icon4.png" id="8_heyp2"]
 [ext_resource type="Texture2D" uid="uid://c6higcd5m85ji" path="res://scenes/background/MainBG_FireDust.png" id="8_vboun"]
 [ext_resource type="PackedScene" uid="uid://6k0ffdcyqd4m" path="res://scenes/Audio/BounceAudio.tscn" id="9_7tkyq"]
 [ext_resource type="Texture2D" uid="uid://536tvr5imja7" path="res://scenes/background/LampPostBG_Pixel.png" id="9_joohe"]
 [ext_resource type="PackedScene" uid="uid://cmxehl2o64xkd" path="res://scenes/Audio/BGMusic.tscn" id="10_emvsy"]
 [ext_resource type="PackedScene" uid="uid://bf27suugembyv" path="res://scenes/Audio/Startsong.tscn" id="11_f4h7r"]
 [ext_resource type="Shader" path="res://scenes/Shader/Ghost.gdshader" id="12_m6e5l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n58vc"]
+radius = 325.81
+
+[sub_resource type="Animation" id="Animation_vx5xw"]
+resource_name = "CooldownAnimation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HUD/CooldownIcon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 9.84908),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0352941), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ij52t"]
+_data = {
+"CooldownAnimation": SubResource("Animation_vx5xw")
+}
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dahug"]
 b = Vector2(10000, 0)
@@ -75,6 +100,19 @@ collision_layer = 3
 freeze = true
 move_force = 2000
 
+[node name="BlastArea" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BlastArea"]
+shape = SubResource("CircleShape2D_n58vc")
+one_way_collision_margin = 0.0
+
+[node name="BlastCooldownTimer" type="Timer" parent="Player"]
+
+[node name="CooldownAnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_ij52t")
+}
+
 [node name="ObjectSpawner" parent="." instance=ExtResource("4_irqdp")]
 position = Vector2(1207, 101)
 impulse = Vector2(-300, 0)
@@ -86,6 +124,16 @@ hud = NodePath("../HUD")
 [node name="HUD" parent="." instance=ExtResource("6_ch5am")]
 offset_right = 1151.0
 offset_bottom = 676.0
+
+[node name="CooldownIcon" type="TextureRect" parent="HUD"]
+visible = false
+modulate = Color(1, 1, 1, 0.0352941)
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 32.0
+offset_right = 1124.0
+offset_bottom = 96.0
+texture = ExtResource("8_heyp2")
 
 [node name="WorldBoundary" type="Area2D" parent="."]
 position = Vector2(-5000, 800)
